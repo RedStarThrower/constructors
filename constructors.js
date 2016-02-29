@@ -29,8 +29,11 @@
 // instance from it called `foo`.
 
 // -- ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ - Your Answer - ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ -- //
+var Foo = function () {
 
+}
 
+var foo = new Foo
 
 // -- ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ -- //
 
@@ -50,7 +53,9 @@ console.assert(foo instanceof Foo);
 // `says` and the value should be `life is ruff`
 
 // -- ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ - Your Answer - ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ -- //
-
+var Dog = function() {
+	this.says = "life is ruff"
+}
 
 
 // -- ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ -- //
@@ -67,12 +72,17 @@ console.assert(new Dog().says === "life is ruff");
 // 3. ------------------------------------------------------------ //
 
 // Create a constructor function called `Cat` that has a method on
-// it's prototype called `growl` that returns the string `meow`.
+// its prototype called `growl` that returns the string `meow`.
 // create an instance of this called `cat`
 
 // -- ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ - Your Answer - ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ -- //
+var Cat = function () {
+	this.growl = function() {
+		return "meow"
+	}
+}
 
-
+var cat = new Cat()
 
 // -- ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ -- //
 
@@ -96,6 +106,13 @@ console.assert(cat.growl() === "meow");
 // student will gain. In short, make the following assertions pass:
 
 // -- ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ - Your Answer - ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ -- //
+var Student = function(input) {
+	this.expertise = input
+	this.knowledge = 0
+	this.learn = function(knowledgeAmount) {
+		this.knowledge += knowledgeAmount
+	}
+}
 
 
 // -- ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ -- //
@@ -125,7 +142,12 @@ console.assert(jasper.knowledge === 101)
 // prototype that is called `squeal` that returns the secret string.
 
 // -- ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ - Your Answer - ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ -- //
-
+var KeepSecret = function(inputSecret) {
+	var secret = inputSecret
+	this.squeal = function() {
+		return secret
+	}
+}
 
 
 // -- ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ -- //
@@ -154,7 +176,19 @@ console.assert(dontTellNobody.squeal() === mySecret);
 // the secret data.
 
 // -- ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ - Your Answer - ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ -- //
+var Key = function() {
 
+}
+
+var Safe = function(inputData, instanceOfKey) {
+	var secretData = inputData
+	var rightKey = new Key()
+	this.unlock = function(rightKey) {
+		if (rightKey === instanceOfKey) {
+			return secretData
+		}
+	}
+}
 
 
 // -- ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ -- //
@@ -191,6 +225,34 @@ console.assert(safe.unlock(rightKey) === sensitive);
 
 // -- ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ - Your Answer - ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ -- //
 
+
+var Validator = function() {
+	var testEmail = function(inputString){
+		if (inputString.indexOf("@") === -1) {
+			return false
+		}
+		var stringParts = inputString.split("@")
+		var userName = stringParts[0]
+		var domainName = stringParts[1]
+		if (domainName.indexOf(".") === -1) {
+			return false
+		}
+		var nameChar = userName.split("")
+		if (nameChar[0] === "."|| nameChar[nameChar.length] === ".") {
+			return false
+		}
+		var domChar = domainName.split("")
+		if (domChar[0] === "."|| domChar[domChar.length] === ".") {
+			return false
+		}
+		return true
+	}
+	this.email = function(inputString) {
+		if (testEmail(inputString)) {
+			return true
+		}
+	}
+}
 
 
 // -- ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ -- //
